@@ -34,11 +34,11 @@ public class SpaceGrid {
            loginFrame.setVisible(true);
        });
        
-       SwingUtilities.invokeLater(() -> {
-           MainDashboardFrame dashboard = new MainDashboardFrame();
-           dashboard.setLocationRelativeTo(null); // Center window on screen
-           dashboard.setVisible(true);
-       });
+//       SwingUtilities.invokeLater(() -> {
+//           MainDashboardFrame dashboard = new MainDashboardFrame();
+//           dashboard.setLocationRelativeTo(null); // Center window on screen
+//           dashboard.setVisible(true);
+//       });
        
        System.out.println("Testing Property Persistence...");
 

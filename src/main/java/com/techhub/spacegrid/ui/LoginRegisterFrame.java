@@ -101,7 +101,14 @@ public class LoginRegisterFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //The Frame to navigate to
+        LoginFrame loginWindow = new LoginFrame();
+    
+        // This line centers the window on the user's screen
+        loginWindow.setLocationRelativeTo(null); 
+
+        loginWindow.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
