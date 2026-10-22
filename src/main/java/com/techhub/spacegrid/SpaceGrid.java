@@ -28,32 +28,32 @@ public class SpaceGrid {
             e.printStackTrace();
         }
         
-//        
-//        SwingUtilities.invokeLater(() -> {
-//            LoginRegisterFrame loginFrame = new LoginRegisterFrame();
-//            loginFrame.setVisible(true);
-//        });
-//        
-//        SwingUtilities.invokeLater(() -> {
-//            MainDashboardFrame dashboard = new MainDashboardFrame();
-//            dashboard.setLocationRelativeTo(null); // Center window on screen
-//            dashboard.setVisible(true);
-//        });
-//        
-//        System.out.println("Testing Property Persistence...");
-//
-//        // 1. Create dummy Property model
-//        Property testProperty = new Property("Davao Commercial Center", 10, 10);
-//        testProperty.setDimensions(500.0); // 500 sqm
-//
-//        // 2. Save via DAO
-//        PropertyDAO propertyDAO = new PropertyDAO();
-//        int createdId = propertyDAO.saveProperty(testProperty);
-//
-//        if (createdId != -1) {
-//            System.out.println("SUCCESS: Created Property in MySQL with ID: " + createdId);
-//        } else {
-//            System.out.println("FAILED: Could not save property.");
-//        }
+       
+       SwingUtilities.invokeLater(() -> {
+           LoginRegisterFrame loginFrame = new LoginRegisterFrame();
+           loginFrame.setVisible(true);
+       });
+       
+       SwingUtilities.invokeLater(() -> {
+           MainDashboardFrame dashboard = new MainDashboardFrame();
+           dashboard.setLocationRelativeTo(null); // Center window on screen
+           dashboard.setVisible(true);
+       });
+       
+       System.out.println("Testing Property Persistence...");
+
+       // 1. Create dummy Property model
+       Property testProperty = new Property("Davao Commercial Center", 10, 10);
+       testProperty.setDimensions(500.0); // 500 sqm
+
+       // 2. Save via DAO
+       PropertyDAO propertyDAO = new PropertyDAO();
+       int createdId = propertyDAO.saveProperty(testProperty);
+
+       if (createdId != -1) {
+           System.out.println("SUCCESS: Created Property in MySQL with ID: " + createdId);
+       } else {
+           System.out.println("FAILED: Could not save property.");
+       }
     }
 }
