@@ -4,6 +4,9 @@ public class Property {
     private int id;
     private int ownerId;
     private String propertyName;
+    private String propertyType;
+    private String address;
+    private String description;
     private boolean hasExactDimensions;
     private String sizeDescription;
     private double totalAreaSqm;
@@ -11,13 +14,20 @@ public class Property {
     private int gridColumns;
     private String status; // 'DRAFT', 'PUBLISHED'
 
-    // Constructor for creating a new property before DB insertion
+    // 1. Default constructor for DAO and form initialization
+    public Property() {
+        this.status = "DRAFT";
+        this.ownerId = 1; // Default landlord ID for testing
+        this.gridRows = 1;
+        this.gridColumns = 1;
+    }
+
+    // 2. Existing constructor for grid insertion
     public Property(String propertyName, int gridRows, int gridColumns) {
+        this();
         this.propertyName = propertyName;
         this.gridRows = gridRows;
         this.gridColumns = gridColumns;
-        this.status = "DRAFT";
-        this.ownerId = 1; // Default landlord ID for testing
     }
 
     // Overloaded method to set spatial details
@@ -31,7 +41,7 @@ public class Property {
         this.sizeDescription = sizeDescription;
     }
 
-    // Getters and Setters
+    // Primary Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -40,6 +50,19 @@ public class Property {
 
     public String getPropertyName() { return propertyName; }
     public void setPropertyName(String propertyName) { this.propertyName = propertyName; }
+
+    // Alias methods for UI compatibility (getName / setName)
+    public String getName() { return propertyName; }
+    public void setName(String name) { this.propertyName = name; }
+
+    public String getPropertyType() { return propertyType != null ? propertyType : "Apartment"; }
+    public void setPropertyType(String propertyType) { this.propertyType = propertyType; }
+
+    public String getAddress() { return address != null ? address : ""; }
+    public void setAddress(String address) { this.address = address; }
+
+    public String getDescription() { return description != null ? description : ""; }
+    public void setDescription(String description) { this.description = description; }
 
     public boolean isHasExactDimensions() { return hasExactDimensions; }
     public String getSizeDescription() { return sizeDescription; }
