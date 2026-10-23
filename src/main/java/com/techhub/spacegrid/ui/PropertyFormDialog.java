@@ -14,13 +14,22 @@ public class PropertyFormDialog extends javax.swing.JDialog {
 
     private final Property propertyToEdit;
     private final PropertyDAO propertyDAO = new PropertyDAO();
+    private int landlordId = 1; // Default fallback landlord ID
 
     /**
      * Creates new form PropertyFormDialog as a modal dialog.
      */
     public PropertyFormDialog(java.awt.Frame parent, boolean modal, Property property) {
+        this(parent, modal, property, 1);
+    }
+
+    /**
+     * Overloaded constructor accepting landlordId
+     */
+    public PropertyFormDialog(java.awt.Frame parent, boolean modal, Property property, int landlordId) {
         super(parent, modal);
         this.propertyToEdit = property;
+        this.landlordId = landlordId;
         
         initComponents();
         setLocationRelativeTo(parent);
@@ -54,13 +63,16 @@ public class PropertyFormDialog extends javax.swing.JDialog {
         if (propertyToEdit == null) {
             // Create new property
             Property newProperty = new Property();
+            newProperty.setLandlordId(this.landlordId); // Sets the foreign key landlord_id
             newProperty.setName(name);
             newProperty.setPropertyType(type);
             newProperty.setAddress(address);
             newProperty.setDescription(description);
+            newProperty.setStatus("ACTIVE");
 
-            boolean success = propertyDAO.addProperty(newProperty);
-            if (success) {
+            // Save via PropertyDAO
+            int generatedId = propertyDAO.saveProperty(newProperty);
+            if (generatedId > 0) {
                 JOptionPane.showMessageDialog(this, "Property added successfully!");
                 dispose();
             } else {

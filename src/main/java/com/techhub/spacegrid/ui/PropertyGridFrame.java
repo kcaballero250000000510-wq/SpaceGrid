@@ -22,10 +22,22 @@ public class PropertyGridFrame extends javax.swing.JFrame {
 
     private final PropertyDAO propertyDAO = new PropertyDAO();
     private List<Property> allProperties;
+    private int currentLandlordId = 1;
     /**
      * Creates new form PropertyGridFrame
      */
-    public PropertyGridFrame() {
+public PropertyGridFrame() {
+        initComponents();
+        setLocationRelativeTo(null);
+        setupCustomLogic();
+        loadPropertiesFromDatabase();
+    }
+
+    /**
+     * Overloaded constructor passed from LoginRegisterFrame upon login
+     */
+    public PropertyGridFrame(int landlordId) {
+        this.currentLandlordId = landlordId;
         initComponents();
         setLocationRelativeTo(null);
         setupCustomLogic();
@@ -49,8 +61,9 @@ public class PropertyGridFrame extends javax.swing.JFrame {
         });
     }
 
-    public void loadPropertiesFromDatabase() {
-        allProperties = propertyDAO.getAllProperties();
+public void loadPropertiesFromDatabase() {
+        // Fetch properties strictly belonging to the currently logged-in landlord
+        allProperties = propertyDAO.getPropertiesByLandlordId(currentLandlordId);
         filterAndRender();
     }
 
